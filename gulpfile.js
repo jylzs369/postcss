@@ -5,11 +5,12 @@ var gulp = require('gulp'),
     cssnano = require('cssnano'),
     rename = require('gulp-rename'),
     stylelint = require('stylelint'),
-    reporter = require('postcss-reporter');
+    reporter = require('postcss-reporter')
+    cssvariables = require('postcss-css-variables');
 
 gulp.task('styles', function () {
     return gulp.src('src/*.css')
-        .pipe(postcss([autoprefixer]))
+        .pipe(postcss([autoprefixer, cssnano, cssvariables()]))
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('dist'));
@@ -17,7 +18,6 @@ gulp.task('styles', function () {
 
 gulp.task('rename', ['styles'], function () {
     return gulp.src('dist/index.css')
-        .pipe(postcss([cssnano]))
         .pipe(rename('index.min.css'))
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('maps'))
