@@ -2,8 +2,12 @@
     --dark-grayish-green: #868a7b;
     --very-dark-gray: #333;
     --whitle: #fff;
-
     --fullsize: 100%;
+    @define-mixin fontstyle $size, $color {
+        font-size: $(size)px;
+        font-size: calc($size / 16)rem;
+        color: $color;
+    }
 }
 
 html, body {
@@ -14,5 +18,40 @@ html, body {
     min-width: var(--fullsize);
     max-width: var(--fullsize);
     overflow: hidden;
-    background: var(--dark-grayish-green);
+    background: var(--dark-grayish-green)
+}
+h3 {
+    @mixin fontstyle 20, #fff;
+}
+
+h3:hover {
+    @mixin fontstyle 32, #fff;
+}
+.social-list {
+    list-style: none;
+    overflow: hidden;
+}
+.social-icon {
+    float: left;
+    width: 50px;
+    height: 50px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+@each $media in twitter, linkedin, youtube {
+    .icon-$(media) {
+        background-image: url('images/icons/$(media).png');
+    }
+}
+.para {
+    @nest & p:nth-child(1) {
+        color: red;
+    }
+    @nest & p:nth-child(2) {
+        color: blue;
+    }
+    @nest &::before {
+        content: '谁的手机哦';
+    }
 }
