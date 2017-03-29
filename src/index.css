@@ -51,7 +51,49 @@ h3:hover {
     @nest & p:nth-child(2) {
         color: blue;
     }
-    @nest &::before {
-        content: '谁的手机哦';
+}
+
+@component content {
+    width: 500px;
+
+    @descendent alert {
+        font-family: Tahoma, Geneva, Arial, sans-serif;
+        font-size: 100%;
+        color: #555;
+        border-radius: .5em;
+        line-height: 2;
+        margin-bottom: .5em;
+    }
+
+    @modifier error {
+        background: #ffecec;
+        border: .0625rem solid #f5aca6;
+    }
+    @modifier error:hover {
+        opacity: .8;
+    }
+
+    @modifier success {
+        background: #e9ffd9;
+        border: .0625rem solid #a6ca8a;
+    }
+    @modifier success:hover {
+        opacity: .8;
+    }
+
+    @modifier warning {
+        background: #fff8c4;
+        border: .0625rem solid #f2c779;
+    }
+    @modifier warning:hover {
+        opacity: .8;
+    }
+
+    @modifier notice {
+        background: #e3f7fc;
+        border: .0625rem solid #8ed9f6;
+    }
+    @modifier notice:hover {
+        opacity: .8;
     }
 }

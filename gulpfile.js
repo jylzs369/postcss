@@ -10,11 +10,21 @@ var gulp = require('gulp'),
     cssmixins = require('postcss-mixins'),
     calc = require('postcss-calc')
     eachloop = require('postcss-each'),
-    nesting = require('postcss-nesting');
+    nesting = require('postcss-nesting')
+    bem = require('postcss-bem')
+    bemLinter = require('postcss-bem-linter');
 
 gulp.task('styles', function () {
     return gulp.src('src/*.css')
-        .pipe(postcss([autoprefixer, nesting, cssvariables, cssmixins, calc, eachloop]))
+        .pipe(postcss([autoprefixer, nesting, cssvariables, cssmixins, calc, eachloop, bem]))
+        .pipe(postcss([
+            bemLinter({
+                preset: 'bem'
+            }),
+            reporter({
+                clearMessages: true
+            })
+        ]))
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('dist'));
