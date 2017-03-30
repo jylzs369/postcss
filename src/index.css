@@ -117,12 +117,16 @@ h3:hover {
         font-size: 40px;
     }
 }
+
 #retina img {
-    image-size: responsive at-2x;
+    image-size: responsive;
 }
-@custom-media --hi-resolution screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi);
+#retina img {
+    background: url('./images/icons/apple.png') at-2x;
+}
+/*@custom-media --hi-resolution screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi);
 @media (--hi-resolution) {
     #retina img {
         content: url('./images/icons/apple@2x.png');
     }
-}
+}*/

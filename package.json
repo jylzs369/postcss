@@ -16,6 +16,7 @@
     "gulp-postcss": "^6.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.4.1",
+    "postcss-at2x": "^3.0.0",
     "postcss-bem": "^0.4.1",
     "postcss-bem-linter": "^2.7.0",
     "postcss-calc": "^5.3.1",
