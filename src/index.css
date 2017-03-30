@@ -97,3 +97,10 @@ h3:hover {
         opacity: .8;
     }
 }
+
+@custom-media --ipad (max-device-width: 768px) and (min-device-width: 1024px);
+@media (--ipad) {
+    h2 {
+        font-size: 0.8rem;
+    }
+}

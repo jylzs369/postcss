@@ -12,11 +12,12 @@ var gulp = require('gulp'),
     eachloop = require('postcss-each'),
     nesting = require('postcss-nesting')
     bem = require('postcss-bem')
-    bemLinter = require('postcss-bem-linter');
+    bemLinter = require('postcss-bem-linter')
+    customMedia = require('postcss-custom-media');
 
 gulp.task('styles', function () {
     return gulp.src('src/*.css')
-        .pipe(postcss([autoprefixer, nesting, cssvariables, cssmixins, calc, eachloop, bem]))
+        .pipe(postcss([autoprefixer, nesting, cssvariables, cssmixins, calc, eachloop, bem, customMedia]))
         .pipe(postcss([
             bemLinter({
                 preset: 'bem'
