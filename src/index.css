@@ -117,3 +117,6 @@ h3:hover {
         font-size: 40px;
     }
 }
+#retina img {
+    image-size: responsive;
+}
