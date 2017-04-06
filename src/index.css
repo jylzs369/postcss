@@ -1,3 +1,4 @@
+/*
 :root {
     --dark-grayish-green: #868a7b;
     --very-dark-gray: #333;
@@ -39,9 +40,10 @@ h3:hover {
     background-repeat: no-repeat;
     background-size: 100%;
 }
+
 @each $media in twitter, linkedin, youtube {
     .icon-$(media) {
-        background-image: url('images/icons/$(media).png');
+        background: resolve('icons/$(media).png');
     }
 }
 .para {
@@ -107,7 +109,7 @@ h3:hover {
 @custom-media --small-viewport all and (min-width: 600px);
 @custom-media --medium-viewport all and (min-width: 960px);
 
-/*@media (--small-viewport) {
+@media (--small-viewport) {
     .responsive {
         font-size: 20px;
     }
@@ -116,22 +118,26 @@ h3:hover {
     .responsive {
         font-size: 40px;
     }
-}*/
+}
 
 #retina img {
     image-size: responsive;
 }
 #retina img {
-    background: url('./images/icons/apple.png') at-2x;
+    background: resolve('icons/apple.png') at-2x;
 }
-/*@custom-media --hi-resolution screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi);
+@custom-media --hi-resolution screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi);
 @media (--hi-resolution) {
     #retina img {
         content: url('./images/icons/apple@2x.png');
     }
-}*/
+}
 
 html {
     font-size: responsive 12px 21px;
     font-range: 420px 1280px;
+}*/
+
+.icon-twitter {
+    background: resolve('icons/apple.png') no-repeat;
 }
