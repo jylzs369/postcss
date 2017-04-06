@@ -107,7 +107,7 @@ h3:hover {
 @custom-media --small-viewport all and (min-width: 600px);
 @custom-media --medium-viewport all and (min-width: 960px);
 
-@media (--small-viewport) {
+/*@media (--small-viewport) {
     .responsive {
         font-size: 20px;
     }
@@ -116,7 +116,7 @@ h3:hover {
     .responsive {
         font-size: 40px;
     }
-}
+}*/
 
 #retina img {
     image-size: responsive;
@@ -130,3 +130,8 @@ h3:hover {
         content: url('./images/icons/apple@2x.png');
     }
 }*/
+
+html {
+    font-size: responsive 12px 21px;
+    font-range: 420px 1280px;
+}

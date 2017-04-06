@@ -15,11 +15,12 @@ var gulp = require('gulp'),
     bemLinter = require('postcss-bem-linter'),
     customMedia = require('postcss-custom-media'),
     responsiveimages = require('postcss-responsive-images'),
-    at2x = require('postcss-at2x');
+    at2x = require('postcss-at2x'),
+    responsiveType = require('postcss-responsive-type');
 
 gulp.task('styles', function () {
     return gulp.src('src/*.css')
-        .pipe(postcss([autoprefixer, nesting, cssvariables, cssmixins, calc, eachloop, bem, customMedia, responsiveimages, at2x]))
+        .pipe(postcss([autoprefixer, nesting, cssvariables, cssmixins, calc, eachloop, bem, customMedia, responsiveimages, at2x, responsiveType]))
         .pipe(postcss([
             bemLinter({
                 preset: 'bem'
