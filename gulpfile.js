@@ -16,7 +16,8 @@ var gulp = require('gulp'),
     customMedia = require('postcss-custom-media'),
     responsiveimages = require('postcss-responsive-images'),
     at2x = require('postcss-at2x'),
-    responsiveType = require('postcss-responsive-type');
+    responsiveType = require('postcss-responsive-type'),
+    mqKeyframes = require('postcss-mq-keyframes');
 
 gulp.task('styles', function () {
     return gulp.src('src/*.css')
