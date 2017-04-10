@@ -4,17 +4,27 @@ var gulp = require('gulp'),
     cssnano = require('cssnano'),
     rename = require('gulp-rename'),
     fontpath = require('postcss-fontpath'),
+    sprites = require('postcss-sprites'),
     assets = require('postcss-assets');
 
+var basePath = 'dist/';
+
 var options = {
-    basePath: 'dist',
-    relative: true,
-    loadPaths: ['images/']
+    assets: {
+        basePath: basePath,
+        relative: true,
+        loadPaths: ['images/']
+    },
+    sprites: {
+        basePath: basePath,
+        stylesheetPath: basePath,
+        spritePath: basePath + 'images/'
+    }
 };
 
 gulp.task('assets', function () {
     return gulp.src('src/*.css')
-        .pipe(postcss([assets(options), fontpath]))
+        .pipe(postcss([assets(options.assets), fontpath, sprites(options.sprites)]))
         .pipe(gulp.dest('dist'));
 })
 gulp.task('rename', function () {
