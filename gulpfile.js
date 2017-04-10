@@ -2,7 +2,8 @@ var gulp = require('gulp'),
     path = require('path'),
     postcss = require('gulp-postcss'),
     cssnano = require('cssnano'),
-    rename = require('gulp-rename')
+    rename = require('gulp-rename'),
+    fontpath = require('postcss-fontpath'),
     assets = require('postcss-assets');
 
 var options = {
@@ -13,7 +14,7 @@ var options = {
 
 gulp.task('assets', function () {
     return gulp.src('src/*.css')
-        .pipe(postcss([assets(options)]))
+        .pipe(postcss([assets(options), fontpath]))
         .pipe(gulp.dest('dist'));
 })
 gulp.task('rename', function () {

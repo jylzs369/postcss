@@ -141,3 +141,28 @@ html {
 .icon-twitter {
     background: resolve('icons/apple.png') no-repeat;
 }
+
+@font-face {
+  font-family: 'iconfont';
+  font-path: '//at.alicdn.com/t/font_ffvo874e36a5g66r';
+  font-weight: normal;
+  font-style: normal;
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-duigou:before { content: "\e65a"; }
+.icon-icon:before { content: "\e607"; }
+.icon-shenpizhong:before { content: "\e602"; }
+.icon-yichexiao:before { content: "\e603"; }
+.icon-shenpitongguo:before { content: "\e604"; }
+.icon-shenpibutongguo:before { content: "\e605"; }
+.icon-jingshi:before { content: "\e606"; }
+.icon-jiantou:before { content: "\e608"; }
+.icon-morentouxiang-:before { content: "\e609"; }
