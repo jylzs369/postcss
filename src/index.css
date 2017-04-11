@@ -178,3 +178,15 @@ html {
 .icon-youtube {
     background: #fff resolve('icons/youtube.png') no-repeat 0 0 / cover;
 }
+.icon {
+    display: inline-block;
+}
+.icon--ei-sc-github {
+    fill: orange;
+}
+.pink {
+    color: pink;
+}
+.success {
+    color: #449922;
+}

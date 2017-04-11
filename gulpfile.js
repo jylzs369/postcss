@@ -24,11 +24,12 @@ var options = {
     }
 };
 
-gulp.task('assets', function () {
+gulp.task('assets', ['icons'], function () {
     return gulp.src('src/*.css')
         .pipe(postcss([assets(options.assets), fontpath, sprites(options.sprites), postcssSVG()]))
         .pipe(gulp.dest('dist'));
 })
+
 gulp.task('rename', function () {
     return gulp.src('dist/index.css')
         .pipe(postcss([cssnano]))
@@ -36,15 +37,14 @@ gulp.task('rename', function () {
         .pipe(gulp.dest('dist'));
 })
 
-gulp.tast('icons', function () {
-    return gulp.src('index.html')
+gulp.task('icons', function () {
+    return gulp.src('src/index.html')
         .pipe(evilIcons())
-        .pipe(rename('index1.html'))
-        .pipe(gulp.dest('/'));
+        .pipe(gulp.dest('dist/'));
 })
 
 gulp.task('default', ['icons', 'assets', 'rename']);
 
-gulp.watch('*.index', ['icons']);
+gulp.watch('src/*.html', ['icons']);
 gulp.watch('src/*.css', ['assets']);
 gulp.watch('dist/*.css', ['rename']);
