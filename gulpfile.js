@@ -1,10 +1,12 @@
 var gulp = require('gulp'),
     path = require('path'),
-    postcss = require('gulp-postcss'),
     cssnano = require('cssnano'),
+    postcss = require('gulp-postcss'),
     rename = require('gulp-rename'),
+    evilIcons = require('gulp-evil-icons'),
     fontpath = require('postcss-fontpath'),
     sprites = require('postcss-sprites'),
+    postcssSVG = require('postcss-svg'),
     assets = require('postcss-assets');
 
 var basePath = 'dist/';
@@ -24,7 +26,7 @@ var options = {
 
 gulp.task('assets', function () {
     return gulp.src('src/*.css')
-        .pipe(postcss([assets(options.assets), fontpath, sprites(options.sprites)]))
+        .pipe(postcss([assets(options.assets), fontpath, sprites(options.sprites), postcssSVG()]))
         .pipe(gulp.dest('dist'));
 })
 gulp.task('rename', function () {
@@ -34,7 +36,15 @@ gulp.task('rename', function () {
         .pipe(gulp.dest('dist'));
 })
 
-gulp.task('default', ['assets', 'rename']);
+gulp.tast('icons', function () {
+    return gulp.src('index.html')
+        .pipe(evilIcons())
+        .pipe(rename('index1.html'))
+        .pipe(gulp.dest('/'));
+})
 
+gulp.task('default', ['icons', 'assets', 'rename']);
+
+gulp.watch('*.index', ['icons']);
 gulp.watch('src/*.css', ['assets']);
 gulp.watch('dist/*.css', ['rename']);
