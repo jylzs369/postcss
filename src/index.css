@@ -190,3 +190,8 @@ html {
 .success {
     color: #449922;
 }
+.loupe {
+    width: 50px;
+    height: 50px;
+    background-image: svg("ei#sc-github", "circle[fill]: rgba(105, 200, 250, .2); circle[stroke]: gray; path[stroke]: brown;");
+}
