@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
     path = require('path'),
+    sass = require('gulp-sass'),
+    neat = require('node-neat').includePaths,
     cssnano = require('cssnano'),
     postcss = require('gulp-postcss'),
     rename = require('gulp-rename'),
@@ -8,6 +10,10 @@ var gulp = require('gulp'),
     sprites = require('postcss-sprites'),
     postcssSVG = require('postcss-svg'),
     assets = require('postcss-assets');
+
+var paths = {
+    sass: 'src/*.scss'
+}
 
 var basePath = 'dist/';
 
@@ -43,8 +49,16 @@ gulp.task('icons', function () {
         .pipe(gulp.dest('dist/'));
 })
 
-gulp.task('default', ['icons', 'assets', 'rename']);
+gulp.task('styles', function () {
+    return gulp.src(paths.sass)
+        .pipe(sass({
+            includePaths: require('node-neat').includePaths
+        }))
+        .pipe(gulp.dest('dist/'));
+})
 
-gulp.watch('src/*.html', ['icons']);
-gulp.watch('src/*.css', ['assets']);
-gulp.watch('dist/*.css', ['rename']);
+gulp.task('default', ['styles']);
+
+// gulp.watch('src/*.html', ['icons']);
+// gulp.watch('src/*.css', ['assets']);
+// gulp.watch('dist/*.css', ['rename']);
