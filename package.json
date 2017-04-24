@@ -49,6 +49,7 @@
     "postcss-sprites": "^4.2.0",
     "postcss-svg": "^1.0.6",
     "postcss-transform-shortcut": "^2.0.1",
+    "postcss-transition-shortcut": "^1.0.6",
     "rucksack-css": "^0.9.1",
     "stylelint": "^7.9.0"
   }
