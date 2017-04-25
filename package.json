@@ -44,6 +44,7 @@
     "postcss-mq-keyframes": "^0.3.0",
     "postcss-neat": "^2.5.2",
     "postcss-nesting": "^2.3.1",
+    "postcss-pseudo-elements-content": "^1.0.0",
     "postcss-reporter": "^3.0.0",
     "postcss-responsive-images": "^1.0.3",
     "postcss-responsive-type": "^0.5.1",
