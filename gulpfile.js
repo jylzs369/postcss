@@ -1,64 +1,65 @@
-var gulp = require('gulp'),
-    path = require('path'),
-    sass = require('gulp-sass'),
-    neat = require('node-neat').includePaths,
-    cssnano = require('cssnano'),
-    postcss = require('gulp-postcss'),
-    rename = require('gulp-rename'),
-    evilIcons = require('gulp-evil-icons'),
-    fontpath = require('postcss-fontpath'),
-    sprites = require('postcss-sprites'),
-    postcssSVG = require('postcss-svg'),
-    assets = require('postcss-assets');
+'use strict';
+ 
+var gulp = require('gulp');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
+var cssnano = require('gulp-cssnano');
+var sourcemaps = require('gulp-sourcemaps');
+var rename = require('gulp-rename');
+var stylelint = require('stylelint');
+var reporter = require('postcss-reporter');
+var rucksack = require('rucksack-css');
 
-var paths = {
-    sass: 'src/*.scss'
-}
-
-var basePath = 'dist/';
-
-var options = {
-    assets: {
-        basePath: basePath,
-        relative: true,
-        loadPaths: ['images/']
-    },
-    sprites: {
-        basePath: basePath,
-        stylesheetPath: basePath,
-        spritePath: basePath + 'images/'
-    }
+var stylerules = {
+  "color-no-invalid-hex": 2,
+  "declaration-colon-space-before": [2, "never"],
+  "indentation": [2, 2],
+  "number-leading-zero": [2, "always"]
 };
 
-gulp.task('assets', ['icons'], function () {
-    return gulp.src('src/*.css')
-        .pipe(postcss([assets(options.assets), fontpath, sprites(options.sprites), postcssSVG()]))
-        .pipe(gulp.dest('dist'));
-})
+var renameFunction = function (path) {
+  path.extname = ".min.css";
+  return path;
+};
 
-gulp.task('rename', function () {
-    return gulp.src('dist/index.css')
-        .pipe(postcss([cssnano]))
-        .pipe(rename('index.min.css'))
-        .pipe(gulp.dest('dist'));
-})
-
-gulp.task('icons', function () {
-    return gulp.src('src/index.html')
-        .pipe(evilIcons())
-        .pipe(gulp.dest('dist/'));
-})
+var sourceMapLocation = ['dest/*.css', '!dest/*.min.css'];
 
 gulp.task('styles', function () {
-    return gulp.src(paths.sass)
-        .pipe(sass({
-            includePaths: require('node-neat').includePaths
-        }))
-        .pipe(gulp.dest('dist/'));
-})
+  return gulp.src('src/*.css')
+    .pipe(postcss([ rucksack(), autoprefixer() ]))
+    .pipe(gulp.dest('dest/'));
+});
 
-gulp.task('default', ['styles']);
+gulp.task('lint', ['styles'], function() {
+  return gulp.src("dest/*.css")
+    .pipe(postcss([ stylelint({ "rules": stylerules }), 
+    reporter({ clearMessages: true })
+  ]))
+});
 
-// gulp.watch('src/*.html', ['icons']);
-// gulp.watch('src/*.css', ['assets']);
-// gulp.watch('dist/*.css', ['rename']);
+gulp.task('rename', ['lint'], function () {
+  return gulp.src('dest/*.css')
+    .pipe(rename(renameFunction))
+    .pipe(gulp.dest("dest/"));
+});
+
+
+gulp.task('minifyCSS', ['sourcemap'], function () {
+  return gulp.src('dest/*.min.css')
+    .pipe(cssnano({ autoprefixer: false }))
+    .pipe(gulp.dest("dest/"));
+});
+
+gulp.task('sourcemap', ['rename'], function () {
+  return gulp.src(sourceMapLocation)
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.write('maps/'))
+    .pipe(gulp.dest("dest/"));
+});
+
+gulp.task('default', ['styles', 'lint' , 'rename' , 'minifyCSS', 'sourcemap']);
+
+var watcher = gulp.watch('src/*.css', ['styles', 'lint', 'rename' , 'minifyCSS', 'sourcemap']);
+watcher.on('change', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+});
