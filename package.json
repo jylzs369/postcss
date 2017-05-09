@@ -60,6 +60,7 @@
     "postcss-svg": "^1.0.6",
     "postcss-transform-shortcut": "^2.0.1",
     "postcss-transition-shortcut": "^1.0.6",
+    "postcss-value-parser": "^3.3.0",
     "rucksack-css": "^0.9.1",
     "stylehacks": "^2.3.2",
     "stylelint": "^7.9.0"
