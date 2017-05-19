@@ -66,6 +66,7 @@
     "postcss-transition-shortcut": "^1.0.6",
     "postcss-unrgba": "^1.1.1",
     "postcss-value-parser": "^3.3.0",
+    "precss": "^1.4.0",
     "rucksack-css": "^0.9.1",
     "stylehacks": "^2.3.2",
     "stylelint": "^7.9.0"
