@@ -49,6 +49,7 @@
     "postcss-fontpath": "^0.3.0",
     "postcss-functions": "^2.1.1",
     "postcss-import": "^10.0.0",
+    "postcss-input-range": "^3.0.1",
     "postcss-mixins": "^5.4.1",
     "postcss-mq-keyframes": "^0.3.0",
     "postcss-neat": "^2.5.2",
