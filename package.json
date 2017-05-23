@@ -67,6 +67,7 @@
     "postcss-short": "^3.0.3",
     "postcss-sprites": "^4.2.0",
     "postcss-svg": "^1.0.6",
+    "postcss-time-machine": "^3.0.0",
     "postcss-transform-shortcut": "^2.0.1",
     "postcss-transition-shortcut": "^1.0.6",
     "postcss-unrgba": "^1.1.1",
